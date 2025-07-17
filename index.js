@@ -18,10 +18,10 @@ const menu = {
     { nombre: "Pastel chocolate", precio: 30 }
   ],
   japanese: [
-    { nombre: "BAOS", precio: "Q35 x1 / Q55 x2" },
+    { nombre: "BAOS", precio: "35 x1 / Q55 x2" },
     { nombre: "MOCHIS", precio: 18 },
     { nombre: "KATSU SANDO", variantes: [{ tipo: "pollo", precio: 45 }, { tipo: "cerdo", precio: 50 }] },
-    { nombre: "SANDOS", precio: "Q38 / Q43", sabores: ["Uva verde", "Frutos rojos", "Melocotón mora", "Fresa"] }
+    { nombre: "SANDOS", precio: "38 / Q43", sabores: ["Uva verde", "Frutos rojos", "Melocotón mora", "Fresa"] }
   ],
   bebidas: {
     calientes: [
