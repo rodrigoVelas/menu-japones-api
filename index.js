@@ -9,7 +9,8 @@ app.use(cors());
 app.use(express.json());
 
 // =========================================================
-// ESTA ES LA DEFINICIÓN DEL ARRAY 'menu' QUE SE DEBE ENVIAR DIRECTAMENTE
+// DEFINICIÓN DEL MENÚ COMO UN ARRAY PLANO DE OBJETOS
+// CADA OBJETO REPRESENTA UN ÍTEM DEL MENÚ
 // =========================================================
 const menu = [
     // --- Brunch ---
@@ -459,7 +460,8 @@ app.get('/', (req, res) => {
 
 // Endpoint para obtener todo el menú
 app.get('/api/menu', (req, res) => {
-    // ¡ESTA ES LA LÍNEA CRÍTICA! Envía el array 'menu' directamente
+    // ¡ESTA ES LA LÍNEA CLAVE! Envía el array 'menu' directamente.
+    // Esto es lo que tu frontend de Vercel espera.
     res.json(menu);
 });
 
