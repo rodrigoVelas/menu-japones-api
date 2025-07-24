@@ -9,7 +9,7 @@ app.use(cors());
 app.use(express.json());
 
 // =========================================================
-// DATOS DEL MENÚ DE FUWA (con imageUrls, pero no causan error si no existen las fotos)
+// DATOS DEL MENÚ DE FUWA (con imageUrls, que son solo datos)
 // =========================================================
 const menu = [
     // --- Brunch ---
@@ -20,7 +20,7 @@ const menu = [
         price: 45.00,
         category: 'Brunch',
         subCategory: null,
-        imageUrl: 'assets/img/brunch-toast.jpg', // Esta ruta es un dato, no afecta el backend
+        imageUrl: 'assets/img/brunch-toast.jpg',
         tags: ['dulce', 'frutas', 'saludable']
     },
     {
@@ -460,7 +460,7 @@ app.get('/', (req, res) => {
 // Endpoint para obtener todo el menú
 app.get('/api/menu', (req, res) => {
     // ESTA ES LA LÍNEA CRÍTICA QUE ASEGURA QUE SE ENVÍA EL ARRAY PLANO
-    res.json(menu); //
+    res.json(menu);
 });
 
 // Endpoint para obtener productos por categoría (ej. /api/menu/Brunch)
