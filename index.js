@@ -3,24 +3,13 @@
 const express = require('express');
 const cors = require('cors');
 const app = express();
-const PORT = process.env.PORT || 3000; // Puedes cambiar el puerto si es necesario, o Render lo asignará.
+const PORT = process.env.PORT || 3000;
 
-// Middleware para habilitar CORS (Cross-Origin Resource Sharing)
-// Permite que tu frontend (en un dominio diferente) acceda a esta API.
-// Para producción, se recomienda especificar el 'origin' de tu frontend para mayor seguridad.
-// Por ejemplo:
-// const corsOptions = {
-//     origin: 'https://tu-dominio-del-frontend.com', // Reemplaza con el dominio real de tu frontend
-//     optionsSuccessStatus: 200
-// };
-// app.use(cors(corsOptions));
-// Para desarrollo o si no sabes el dominio exacto del frontend, puedes dejarlo como está:
 app.use(cors());
-
-app.use(express.json()); // Para parsear cuerpos de solicitudes JSON (si los necesitaras en el futuro)
+app.use(express.json());
 
 // =========================================================
-// DATOS DEL MENÚ DE FUWA
+// DATOS DEL MENÚ DE FUWA (con imageUrls, pero no causan error si no existen las fotos)
 // =========================================================
 const menu = [
     // --- Brunch ---
@@ -31,7 +20,7 @@ const menu = [
         price: 45.00,
         category: 'Brunch',
         subCategory: null,
-        imageUrl: 'assets/img/brunch-toast.jpg', // Asegúrate de que esta ruta coincida con la de tu frontend
+        imageUrl: 'assets/img/brunch-toast.jpg', // Esta ruta es un dato, no afecta el backend
         tags: ['dulce', 'frutas', 'saludable']
     },
     {
@@ -102,7 +91,7 @@ const menu = [
         id: 'japanese-001',
         name: 'BAOS (Pancillos al Vapor)',
         description: 'Pancillos suaves y esponjosos de origen japonés, rellenos a elegir entre cerdo desmenuzado o vegetales. ¡Una delicia para picar!',
-        price: { '1': 35.00, '2': 55.00 }, // Precios por cantidad
+        price: { '1': 35.00, '2': 55.00 },
         category: 'Japanese',
         subCategory: null,
         imageUrl: 'assets/img/japanese-baos.jpg',
@@ -159,7 +148,7 @@ const menu = [
         subCategory: 'Calientes',
         imageUrl: 'assets/img/hotdrink-americano.jpg',
         tags: ['cafe', 'clasico'],
-        isJapaneseCoffeeInspired: false // Aunque es café, no tiene un toque japonés explícito
+        isJapaneseCoffeeInspired: false
     },
     {
         id: 'drink-hot-002',
@@ -280,7 +269,7 @@ const menu = [
         subCategory: 'Calientes',
         imageUrl: 'assets/img/hotdrink-taro.jpg',
         tags: ['taro', 'asiatico', 'leche'],
-        isJapaneseCoffeeInspired: true // Marcado como inspiración japonesa
+        isJapaneseCoffeeInspired: true
     },
     {
         id: 'drink-hot-013',
@@ -291,7 +280,7 @@ const menu = [
         subCategory: 'Calientes',
         imageUrl: 'assets/img/hotdrink-matcha.jpg',
         tags: ['matcha', 'te japones', 'saludable'],
-        isJapaneseCoffeeInspired: true // Marcado como inspiración japonesa
+        isJapaneseCoffeeInspired: true
     },
 
     // --- Bebidas Frías ---
@@ -470,7 +459,8 @@ app.get('/', (req, res) => {
 
 // Endpoint para obtener todo el menú
 app.get('/api/menu', (req, res) => {
-    res.json(menu);
+    // ESTA ES LA LÍNEA CRÍTICA QUE ASEGURA QUE SE ENVÍA EL ARRAY PLANO
+    res.json(menu); //
 });
 
 // Endpoint para obtener productos por categoría (ej. /api/menu/Brunch)
