@@ -9,7 +9,7 @@ app.use(cors());
 app.use(express.json());
 
 // =========================================================
-// DATOS DEL MENÚ DE FUWA (con imageUrls, que son solo datos)
+// ESTA ES LA DEFINICIÓN DEL ARRAY 'menu' QUE SE DEBE ENVIAR DIRECTAMENTE
 // =========================================================
 const menu = [
     // --- Brunch ---
@@ -459,7 +459,7 @@ app.get('/', (req, res) => {
 
 // Endpoint para obtener todo el menú
 app.get('/api/menu', (req, res) => {
-    // ESTA ES LA LÍNEA CRÍTICA QUE ASEGURA QUE SE ENVÍA EL ARRAY PLANO
+    // ¡ESTA ES LA LÍNEA CRÍTICA! Envía el array 'menu' directamente
     res.json(menu);
 });
 
